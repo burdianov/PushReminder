@@ -33,14 +33,15 @@ public class MainActivity extends AppCompatActivity {
             public void onReceive(Context context, Intent intent) {
                 //If the broadcast has received with success
                 //that means device is registered successfully
-                if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)){
+                if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)) {
                     //Getting the registration token from the intent
                     String token = intent.getStringExtra("token");
+
                     //Displaying the token as toast
                     Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
 
                     //if the intent is not with success then displaying error messages
-                } else if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)){
+                } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
                     Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
@@ -53,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
                 .isGooglePlayServicesAvailable(getApplicationContext());
 
         //if play service is not available
-        if(ConnectionResult.SUCCESS != resultCode) {
+        if (ConnectionResult.SUCCESS != resultCode) {
             //If play service is supported but not installed
-            if(GoogleApiAvailability.getInstance().isUserResolvableError(resultCode)) {
+            if (GoogleApiAvailability.getInstance().isUserResolvableError(resultCode)) {
                 //Displaying message that play service is not installed
                 Toast.makeText(getApplicationContext(), "Google Play Service is " +
                         "not installed/enabled in this device!", Toast
