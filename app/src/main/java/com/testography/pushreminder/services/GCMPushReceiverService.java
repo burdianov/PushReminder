@@ -13,19 +13,25 @@ import com.google.android.gms.gcm.GcmListenerService;
 import com.testography.pushreminder.R;
 import com.testography.pushreminder.ui.MainActivity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GCMPushReceiverService extends GcmListenerService {
 
     //This method will be called on every new message received
     @Override
     public void onMessageReceived(String from, Bundle data) {
         //Getting the message from the bundle
-        String message = data.getString("message");
+        Map<String, String> info = new HashMap<>();
+        info.put("title", data.getString("title"));
+        info.put("content", data.getString("content"));
+
         //Displaying a notification with the message
-        sendNotification(message);
+        sendNotification(info);
     }
 
     //This method is generating a notification and displaying the notification
-    private void sendNotification(String message) {
+    private void sendNotification(Map<String,String> info) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         int requestCode = 0;
@@ -33,8 +39,8 @@ public class GCMPushReceiverService extends GcmListenerService {
         Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_add_alert_black_24dp)
-                .setContentTitle("Hello from WP")
-                .setContentText(message)
+                .setContentTitle(info.get("title"))
+                .setContentText(info.get("content"))
                 .setSound(sound)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent);
