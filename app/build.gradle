@@ -42,10 +42,6 @@ dependencies {
 
     compile "com.google.android.gms:play-services:10.0.1"
 
-    // Flow and Mortar
-    compile 'com.squareup.flow:flow:1.0.0-alpha2'
-    compile 'com.squareup.mortar:mortar:0.20'
-
     // Retrofit 2
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-moshi:2.1.0'

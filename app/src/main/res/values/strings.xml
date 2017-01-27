@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">E Commerce</string>
+    <string name="app_name">Push Reminder</string>
     <string name="enter_email">Enter email</string>
     <string name="enter_password">Enter password</string>
     <string name="view_catalog">View catalog</string>
